@@ -35,9 +35,9 @@ class GraphicsSwing extends JPanel {
         GradientPaint GP = new GradientPaint(0, 0, new Color(50, 105, 102), 300, 400, new Color(253, 213, 92));
         GradientPaint GP3 = new GradientPaint(600, 0, new Color(50, 105, 102), 300, 400, new Color(253, 213, 92));
         g2.setPaint(GP);
-        g2.fillRect(0, 0, 300, 375);
+        g2.fillRect(0, 0, 300, 430);
         g2.setPaint(GP3);
-        g2.fillRect(300, 0, 300, 367);
+        g2.fillRect(300, 0, 300, 430);
         g2.setColor(Color.black);
 
         // stars
@@ -45,7 +45,9 @@ class GraphicsSwing extends JPanel {
 
         // moon รอทำแบบอื่น
         g2.setColor(new Color(253, 213, 92));
-        g2.fillOval(81, 55, 410, 410);
+        for (int i = 1; i <= 230; i += 2) {
+            midPointCircle(g2, 300, 300, i);
+        }
 
         // in moon รอหาจุดพรอตแม่นๆ
         g2.setColor(new Color(246, 189, 58));
@@ -56,63 +58,24 @@ class GraphicsSwing extends JPanel {
 
         // mountain
         g2.setColor(new Color(4, 34, 17));
-        brzierCurve(g2, 0, 425, 175, 325, 450, 325, 600, 425, 1);
+        brzierCurve(g2, 0, 425, 175, 325, 450, 325, 600, 425, 40);
 
         buffer = FloodFill(buffer, 100, 550, Color.white, new Color(4, 34, 17));
         buffer = FloodFill(buffer, 300, 450, new Color(253, 213, 92), new Color(4, 34, 17));
+        plot(g2, 115, 400, 60);
+        plot(g2, 400, 390, 135);
 
-        buffer = FloodFill(buffer, 0, 410, Color.white, new Color(12, 166, 255));
-
-        buffer = FloodFill(buffer, 550, 370, Color.white, new Color(12, 166, 255));
-
-        g2.setColor(new Color(6, 46, 26));
-        brzierCurve(g2, 0, 425 + 90, 175, 325 + 90, 450, 325 + 90, 600 + 90, 425 + 90, 1);
-        buffer = FloodFill(buffer, 550, 550, new Color(4, 34, 17), new Color(6, 46, 26));
-
-        g2.setColor(new Color(8, 61, 34));
-        brzierCurve(g2, 0, 425 + 170, 175, 325 + 170, 450, 325 + 170, 600 + 170, 425 + 170, 1);
-        buffer = FloodFill(buffer, 550, 550, new Color(6, 46, 26), new Color(8, 61, 34));
-
-        // Grass{
-        // left
-        g2.setColor(new Color(4, 34, 17));
-        Bresenham(g2, 150, 400, 200, 344, 3);
-        Bresenham(g2, 150, 400, 180, 344, 3);
-        Bresenham(g2, 150, 400, 168, 340, 3);
-        Bresenham(g2, 150, 400, 152, 344, 3);
-        Bresenham(g2, 150, 400, 130, 340, 3);
-        Bresenham(g2, 150, 400, 122, 350, 3);
-        Bresenham(g2, 150, 400, 100, 350, 3);
-        Bresenham(g2, 150, 400, 86, 370, 3);
-        Bresenham(g2, 150, 400, 70, 378, 3);
-        Bresenham(g2, 60, 400, 50, 368, 3);
-        Bresenham(g2, 60, 400, 38, 364, 3);
-        Bresenham(g2, 30, 450, 28, 385, 3);
-        Bresenham(g2, 30, 450, 20, 390, 3);
-        Bresenham(g2, 30, 450, 10, 388, 3);
-
-        // mid
-        Bresenham(g2, 300, 400, 225, 335, 3);
-        Bresenham(g2, 300, 400, 240, 335, 3);
-        Bresenham(g2, 300, 400, 255, 320, 3);
-        Bresenham(g2, 300, 400, 270, 325, 3);
-        Bresenham(g2, 300, 400, 299, 322, 3);
-        Bresenham(g2, 300, 400, 320, 333, 3);
-        Bresenham(g2, 300, 400, 350, 333, 3);
-        Bresenham(g2, 300, 400, 370, 340, 3);
-
-        // right
-        Bresenham(g2, 400, 400, 400, 335, 3);
-        Bresenham(g2, 400, 400, 420, 335, 3);
-        Bresenham(g2, 400, 400, 450, 335, 3);
-        Bresenham(g2, 400, 400, 480, 355, 3);
-        Bresenham(g2, 480, 400, 500, 355, 3);
-        Bresenham(g2, 480, 400, 512, 360, 3);
-        Bresenham(g2, 480, 400, 525, 367, 3);
-        Bresenham(g2, 480, 400, 570, 377, 3);
-        Bresenham(g2, 520, 400, 555, 360, 3);
-        Bresenham(g2, 550, 400, 570, 390, 3);
-        Bresenham(g2, 570, 450, 580, 392, 3);
+        g2.setColor(Color.black);
+        Ellipse(g2, 300, 230, 50, 45);
+        buffer = FloodFill(buffer, 300, 230, new Color(253, 213, 92), Color.black);
+        brzierCurve(g2, 280, 280, 280, 300, 260, 340, 280, 360, 1);
+        g2.setColor(Color.red);
+        // 1
+        plot(g2, 280, 280, 3);
+        plot(g2, 260, 300, 3);
+        // 4
+        plot(g2, 260, 340, 3);
+        plot(g2, 280, 360, 3);
         // } end
         g.drawImage(buffer, 0, 0, null);
 
@@ -281,45 +244,74 @@ class GraphicsSwing extends JPanel {
         g.fillRect(x, y, size, size);
     }
 
-    public BufferedImage FloodFill(BufferedImage m, int x, int y, Color targetColour, Color replacementColor,
-            boolean test) {
-        Graphics2D g2 = m.createGraphics();
-        Queue<Point> q = new LinkedList<>();
+    public void midPointCircle(Graphics g, int xc, int yc, int r) {
+        int x = 0;
+        int y = r;
 
-        if (m.getRGB(x, y) != targetColour.getRGB()) {
-            g2.setColor(replacementColor);
-            plot(g2, x, y, 1);
-            q.add(new Point(x, y));
-        }
+        int d = 1 - r;
+        int dx = 2 * x;
+        int dy = 2 * y;
+        while (x <= y) {
+            plot(g, x + xc, y + yc, 3);
+            plot(g, -x + xc, y + yc, 3);
+            plot(g, x + xc, -y + yc, 3);
+            plot(g, -x + xc, -y + yc, 3);
+            plot(g, y + xc, x + yc, 3);
+            plot(g, -y + xc, x + yc, 3);
+            plot(g, y + xc, -x + yc, 3);
+            plot(g, -y + xc, -x + yc, 3);
 
-        while (!q.isEmpty()) {
-            Point p = q.poll();
-
-            // s
-            if (p.y < 600 && !(m.getRGB(p.x, p.y + 1) == targetColour.getRGB())) {
-                g2.setColor(replacementColor);
-                plot(g2, p.x, p.y + 1, 1);
-                q.add(new Point(p.x, p.y + 1));
-            }
-            // n
-            if (p.y > 0 && !(m.getRGB(p.x, p.y - 1) == targetColour.getRGB())) {
-                g2.setColor(replacementColor);
-                plot(g2, p.x, p.y - 1, 1);
-                q.add(new Point(p.x, p.y - 1));
-            }
-            // e
-            if (p.x < 600 && !(m.getRGB(p.x + 1, p.y) == targetColour.getRGB())) {
-                g2.setColor(replacementColor);
-                plot(g2, p.x + 1, p.y, 1);
-                q.add(new Point(p.x + 1, p.y));
-            }
-            // w
-            if (p.x > 0 && !(m.getRGB(p.x - 1, p.y) == targetColour.getRGB())) {
-                g2.setColor(replacementColor);
-                plot(g2, p.x - 1, p.y, 1);
-                q.add(new Point(p.x - 1, p.y));
+            x++;
+            dx += 2;
+            d = d + dx + 1;
+            if (d >= 0) {
+                y--;
+                dy -= 2;
+                d = d - dy;
             }
         }
-        return m;
+    }
+
+    public void Ellipse(Graphics g, int xc, int yc, int a, int b) {
+        int x, y, d;
+
+        x = 0;
+        y = b;
+
+        d = Math.round(b * b - a * a * b + a * a / 4);
+
+        while (b * b * x <= a * a * y) {
+            plot(g, x + xc, y + yc, 3);
+            plot(g, -x + xc, y + yc, 3);
+            plot(g, x + xc, -y + yc, 3);
+            plot(g, -x + xc, -y + yc, 3);
+
+            x++;
+            d = d + 2 * b * b * x + b * b;
+            if (d >= 0) {
+                y--;
+                d = d - 2 * a * a * y;
+            }
+        }
+
+        // r2
+        x = a;
+        y = 0;
+
+        d = Math.round(a * a - b * b * a + b * b / 4);
+
+        while (b * b * x >= a * a * y) {
+            plot(g, x + xc, y + yc, 3);
+            plot(g, -x + xc, y + yc, 3);
+            plot(g, x + xc, -y + yc, 3);
+            plot(g, -x + xc, -y + yc, 3);
+
+            y++;
+            d = d + 2 * a * a * y + a * a;
+            if (d >= 0) {
+                x--;
+                d = d - 2 * b * b * x;
+            }
+        }
     }
 }
