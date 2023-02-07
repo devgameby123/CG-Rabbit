@@ -3,9 +3,9 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
 
-class GraphicsgWeek3_004 extends JPanel {
+class Assignment1_64050004_64050108 extends JPanel {
     public static void main(String[] args) {
-        GraphicsgWeek3_004 m = new GraphicsgWeek3_004();
+        Assignment1_64050004_64050108 m = new Assignment1_64050004_64050108();
 
         JFrame f = new JFrame();
         f.add(m);
@@ -105,7 +105,28 @@ class GraphicsgWeek3_004 extends JPanel {
         bezierCurve(g2, 345, 128, 365, 134, 370, 160, 360, 190, 3);
         bezierCurve(g2, 360, 190, 360, 205, 400, 245, 340 + c, 265, 3);
         buffer = FloodFill2(buffer, 280, 300, new Color(4, 30, 17), new Color(4, 30, 17));
+
+        bezierCurve(g2, 280, 300, 270, 280, 258, 267, 239, 268, 2);
+        makeFlower(g2, buffer, 8, 239, 260, new Color(4, 30, 17));
+        bezierCurve(g2, 460, 390, 470, 380, 465, 370, 495, 360, 2);
+        makeFlower(g2, buffer, 8, 495, 355, new Color(4, 30, 17));
+        bezierCurve(g2, 110, 400, 110, 390, 120, 370, 70, 350, 2);
+        makeFlower(g2, buffer, 8, 65, 345, new Color(4, 30, 17));
         g.drawImage(buffer, 0, 0, null);
+
+    }
+
+    public BufferedImage makeFlower(Graphics g, BufferedImage m, int size, int posx, int posy, Color TargerC) {
+        for (int i = 0; i <= size; i += 2) {
+            midpointCircle(g, posx, posy, i);
+        }
+        midpointEllipse(g, posx, posy, 8, 20);
+        midpointEllipse(g, posx, posy, 20, 8);
+        m = FloodFill2(m, posx, posy + 15, TargerC, TargerC);
+        m = FloodFill2(m, posx, posy - 15, TargerC, TargerC);
+        m = FloodFill2(m, posx + 15, posy, TargerC, TargerC);
+        m = FloodFill2(m, posx - 15, posy, TargerC, TargerC);
+        return m;
 
     }
 
