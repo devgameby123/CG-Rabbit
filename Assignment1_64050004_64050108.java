@@ -33,7 +33,7 @@ class Assignment1_64050004_64050108 extends JPanel {
         g2.fillRect(300, 0, 300, 500);
 
         // stars
-        RandomPlot(g2, 150);
+        RandomPlot(g2, 200);
 
         // moon
         Color moon = new Color(253, 213, 92);
